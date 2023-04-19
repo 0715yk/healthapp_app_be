@@ -7,6 +7,7 @@ import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { LoggerMiddleware } from 'src/common/middlewares/logger.middleware';
 import { AuthModule } from './auth/auth.module';
 import { User } from './user/entities/user.entity';
+import { WorkoutModule } from './workout/workout.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { User } from './user/entities/user.entity';
     }),
     UserModule,
     AuthModule,
+    WorkoutModule,
   ],
   controllers: [AppController],
   providers: [AppService],
