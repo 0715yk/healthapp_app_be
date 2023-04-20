@@ -99,10 +99,26 @@ export class WorkoutController {
     return this.workoutService.findWorkouts(id, date);
   }
 
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updateWorkoutDto: UpdateWorkoutDto) {
-  //   return this.workoutService.update(+id, updateWorkoutDto);
-  // }
+  @Patch('workoutSet/:id')
+  updateWorkoutSet(
+    @Param('id') id: number,
+    @Body()
+    body: {
+      kg?: string;
+      reps?: string;
+    },
+  ) {
+    return this.workoutService.updateWorkoutSet(id, body);
+  }
+
+  @Patch('workoutName/:id')
+  updateWorkoutName(
+    @Param('id') id: number,
+    @Body('workoutName')
+    workoutName: string,
+  ) {
+    return this.workoutService.updateWorkoutName(id, workoutName);
+  }
 
   // @Delete(':id')
   // remove(@Param('id') id: string) {

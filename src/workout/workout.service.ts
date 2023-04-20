@@ -165,9 +165,9 @@ export class WorkoutService {
     });
 
     if (response.length === 1) {
-      await this.deleteWorkoutNum(datesId, workoutNumId);
+      const response = await this.deleteWorkoutNum(datesId, workoutNumId);
     } else {
-      this.workoutNameRepository.delete({
+      const response = this.workoutNameRepository.delete({
         id,
       });
     }
@@ -191,6 +191,46 @@ export class WorkoutService {
         id,
       });
     }
+  }
+
+  async updateWorkoutSet(
+    id: number,
+    body: {
+      kg?: string;
+      reps?: string;
+    },
+  ) {
+    try {
+      const response = await this.workoutRepository.update(
+        {
+          id,
+        },
+        {
+          ...body,
+        },
+      );
+    } catch {}
+  }
+
+  async updateWorkoutName(id: number, workoutName: string) {
+    try {
+      const response = await this.workoutNameRepository.update(
+        {
+          id,
+        },
+        {
+          workoutName,
+        },
+      );
+    } catch {}
+  }
+
+  async getLatestWorkout(id: number, workoutName: string) {
+    try {
+      // const response = await this.workoutNameRepository.findOneBy();
+      // userId 만 가지고 date 테이블에서 order한다음에 첫번째 데이터의 id값을 가져온다음에
+      // 그 id를 가지고 workoutNum
+    } catch {}
   }
 
   async findWorkouts(id: number, date: string) {
